@@ -24,10 +24,11 @@ def extrair_campos(pdf_path):
         "CEP": linhas[43],
         "RISCO": linhas[69],
         "DIAGNOSTICO_INICIAL": linhas[67],
-        "CENTRAL": "Central Reguladora (None)",
+        "CENTRAL": linhas[71],
         "UNIDADE": linhas[6],
         "DATA_SOLICITACAO": linhas[77],
         "SITUACAO_ATUAL": "Situação Atual (None)",
         "HOSPITAL": linhas[75],
+        "PROCEDIMENTO": linhas[81],
     }
     return campos_referencia
