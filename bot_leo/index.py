@@ -1,7 +1,6 @@
 import discord
 from discord.ext import commands
 import os
-import datetime
 
 from extracao import extrair_campos
 from preencher import preencher_modelo
@@ -12,15 +11,6 @@ intents = discord.Intents.default()
 intents.message_content = True
 bot = commands.Bot(command_prefix="!", intents=intents)
 
-# Horário de funcionamento (24h)
-HORARIO_INICIO = 10
-HORARIO_FIM = 17
-
-def esta_no_horario():
-    agora = datetime.datetime.now().time()
-    hora_atual = agora.hour
-    return HORARIO_INICIO <= hora_atual < HORARIO_FIM
-
 @bot.event
 async def on_ready():
     print(f"Bot conectado como {bot.user}")
@@ -28,10 +18,6 @@ async def on_ready():
 @bot.event
 async def on_message(message):
     if message.author.bot:
-        return
-
-    # Bloquear fora do horário
-    if not esta_no_horario():
         return
 
     if message.attachments:
