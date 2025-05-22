@@ -4,8 +4,9 @@ def substituir_em_runs(paragrafos, dados):
     for paragrafo in paragrafos:
         for run in paragrafo.runs:
             for chave, valor in dados.items():
-                if f'{{{{{chave}}}}}' in run.text:
-                    run.text = run.text.replace(f'{{{{{chave}}}}}', valor)
+                placeholder = f'{{{{{chave}}}}}'  # Exemplo: {{PACIENTE}}
+                if placeholder in run.text:
+                    run.text = run.text.replace(placeholder, valor)
 
 def preencher_modelo(caminho_modelo, caminho_saida, dados):
     doc = Document(caminho_modelo)
@@ -21,7 +22,7 @@ def preencher_modelo(caminho_modelo, caminho_saida, dados):
 
     # Substitui no cabeçalho e rodapé
     for section in doc.sections:
-        for part in [section.header, section.footer]:
-            substituir_em_runs(part.paragraphs, dados)
-           
+        for parte in [section.header, section.footer]:
+            substituir_em_runs(parte.paragraphs, dados)
+
     doc.save(caminho_saida)
