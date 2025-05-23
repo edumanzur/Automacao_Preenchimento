@@ -5,7 +5,7 @@ import os
 from extracao import extrair_campos
 from preencher import preencher_modelo
 
-TOKEN = os.getenv("DISCORD_TOLKEN")
+TOKEN = os.getenv("DISCORD_TOKEN")
 
 intents = discord.Intents.default()
 intents.message_content = True
